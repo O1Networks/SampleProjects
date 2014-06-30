@@ -12,6 +12,6 @@
 
 @interface O1ClientView : UIView
 
-@property (nonatomic, assign) O1Datasource * datasource;
+@property (nonatomic, assign) CGContextRef context;
 
 @end

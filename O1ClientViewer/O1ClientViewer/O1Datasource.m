@@ -34,6 +34,19 @@
 		self.workQueue = dispatch_queue_create("BitmapContextGenerator",
 											   DISPATCH_QUEUE_SERIAL);
 		self.frequency = frequency;
+		
+		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+		CGBitmapInfo info = kCGImageAlphaFirst | kCGImageAlphaPremultipliedLast;
+
+		self.bitmapContext = CGBitmapContextCreate(NULL,
+												   IMAGE_WIDTH,
+												   IMAGE_HEIGHT,
+												   8,
+												   IMAGE_WIDTH * sizeof(uint32_t),
+												   colorSpace,
+												   info);
+		
+		CGColorSpaceRelease(colorSpace);
 	}
 	
 	return self;
@@ -74,43 +87,26 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.delegate sessionBitmapContextWillChange:self];
 	});
-	
-	if (self.currentIndex > 1090)
-		self.currentIndex = 1013;
-	NSString * imagename = [NSString stringWithFormat:@"IMG_%d.jpg", self.currentIndex];
-	UIImage * image = [UIImage imageNamed:imagename];
-	++self.currentIndex;
+
 
 	dispatch_async(self.workQueue, ^{
-		[self generateBitmapContext:image.CGImage];
+		[self generateBitmapContext];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self.delegate sessionBitmapContextDidChange:self];
 		});
 	});
 }
 
-- (void)generateBitmapContext:(CGImageRef)image
+- (void)generateBitmapContext
 {
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-	
-	if (self.bitmapContext)
-	{
-		NSLog(@"release %p", self.bitmapContext);
-		CGContextRelease(self.bitmapContext);
-	}
-	
-	// create a context with RGBA pixels
-	self.bitmapContext = CGBitmapContextCreate(NULL,
-											   IMAGE_WIDTH,
-											   IMAGE_HEIGHT,
-											   8,
-											   IMAGE_WIDTH * sizeof(uint32_t),
-											   colorSpace,
-											   CGImageGetBitmapInfo(image));
+	if (self.currentIndex > 1090)
+		self.currentIndex = 1013;
+	NSString * imagename = [NSString stringWithFormat:@"IMG_%d.jpg", self.currentIndex];
+	UIImage * image = [UIImage imageNamed:imagename];
+	++self.currentIndex;
 	
 	CGRect drawRect = CGRectMake(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-	CGContextDrawImage(self.bitmapContext, drawRect, image);
-	CGColorSpaceRelease(colorSpace);
+	CGContextDrawImage(self.bitmapContext, drawRect, image.CGImage);
 }
 
 

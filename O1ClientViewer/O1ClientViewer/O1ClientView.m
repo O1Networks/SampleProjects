@@ -2,7 +2,7 @@
 //  O1ClientView.m
 //  O1ClientViewer
 //
-//  Created by Fish on 6/29/14.
+//  Created by Ji Fang on 6/29/14.
 //
 //
 
@@ -15,10 +15,10 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-	if (self.datasource.bitmapContext)
+	if (self.context)
 	{
 		CGContextRef context = UIGraphicsGetCurrentContext();
-		CGImageRef cgImage = CGBitmapContextCreateImage(self.datasource.bitmapContext);
+		CGImageRef cgImage = CGBitmapContextCreateImage(self.context);
 		
         CGContextTranslateCTM(context, 0, [self bounds].size.height);
         CGContextScaleCTM(context, 1.0, -1.0);

@@ -29,7 +29,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	self.datasource = [[O1Datasource alloc] initWithFrequency:24];
 	self.datasource.delegate = self;
-	self.clientView.datasource = self.datasource;
+	self.clientView.context = self.datasource.bitmapContext;
 }
 
 - (IBAction)onSliderChanged:(id)sender
