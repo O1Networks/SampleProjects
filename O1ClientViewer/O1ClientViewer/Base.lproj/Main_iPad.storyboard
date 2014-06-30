@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="O1ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpC-QG-dGJ" userLabel="Client View" customClass="O1ClientView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEB-1J-K3n">
+                                <rect key="frame" x="491" y="78" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="Frc-iY-37L"/>
+                                    <constraint firstAttribute="height" constant="21" id="lux-wa-e1R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="24" minValue="1" maxValue="60" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q80-IM-k2I">
+                                <rect key="frame" x="390" y="40" width="244" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="c6r-Od-ZND"/>
+                                    <constraint firstAttribute="height" constant="30" id="pHI-rk-iYH"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="N7Q-Q4-H3s"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cpC-QG-dGJ" secondAttribute="trailing" id="54O-OQ-xhk"/>
+                            <constraint firstItem="q80-IM-k2I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="60f-Lc-1bg"/>
+                            <constraint firstAttribute="bottom" secondItem="cpC-QG-dGJ" secondAttribute="bottom" id="DYa-Vw-XjH"/>
+                            <constraint firstItem="cpC-QG-dGJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Dm3-O4-clf"/>
+                            <constraint firstAttribute="centerX" secondItem="CEB-1J-K3n" secondAttribute="centerX" id="IHM-Le-2cg"/>
+                            <constraint firstItem="cpC-QG-dGJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MqO-hz-I7L"/>
+                            <constraint firstItem="CEB-1J-K3n" firstAttribute="top" secondItem="q80-IM-k2I" secondAttribute="bottom" constant="8" id="V5U-JM-Y8y"/>
+                            <constraint firstAttribute="centerX" secondItem="q80-IM-k2I" secondAttribute="centerX" id="xlV-RH-tqI"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="clientView" destination="cpC-QG-dGJ" id="6VQ-rq-oef"/>
+                        <outlet property="frequencyLabel" destination="CEB-1J-K3n" id="uD0-6k-sdb"/>
+                        <outlet property="slider" destination="q80-IM-k2I" id="Va9-UG-199"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
