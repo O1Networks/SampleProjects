@@ -91,16 +91,16 @@
 
 - (void)generateBitmapContext:(CGImageRef)image
 {
-	uint32_t * pixels = (uint32_t *) malloc(IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(uint32_t));
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	
 	if (self.bitmapContext)
 	{
+		NSLog(@"release %p", self.bitmapContext);
 		CGContextRelease(self.bitmapContext);
 	}
 	
 	// create a context with RGBA pixels
-	self.bitmapContext = CGBitmapContextCreate(pixels,
+	self.bitmapContext = CGBitmapContextCreate(NULL,
 											   IMAGE_WIDTH,
 											   IMAGE_HEIGHT,
 											   8,
@@ -110,10 +110,7 @@
 	
 	CGRect drawRect = CGRectMake(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
 	CGContextDrawImage(self.bitmapContext, drawRect, image);
-	
 	CGColorSpaceRelease(colorSpace);
-	free(pixels);
-	
 }
 
 
