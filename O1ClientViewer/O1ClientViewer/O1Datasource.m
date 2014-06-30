@@ -31,9 +31,8 @@
 	{
 		self.currentIndex = 1013;
 		self.datasource = [NSMutableArray array];
-//		self.workQueue = dispatch_queue_create("BitmapContextGenerator",
-//											   DISPATCH_QUEUE_SERIAL);
-		self.workQueue = dispatch_get_main_queue();
+		self.workQueue = dispatch_queue_create("BitmapContextGenerator",
+											   DISPATCH_QUEUE_SERIAL);
 		self.frequency = frequency;
 	}
 	
@@ -97,7 +96,6 @@
 	
 	if (self.bitmapContext)
 	{
-		NSLog(@"Release %p", self.bitmapContext);
 		CGContextRelease(self.bitmapContext);
 	}
 	
